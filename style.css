@@ -1,12 +1,6 @@
-#start-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 500px;
-    margin: 0 auto;
-}
-
-#first-question {
-    display: none;
+#test {
+  border: solid 3px solid;
+  padding: 10px 40px 40px 40px;
+  background-color: #e5fce3;
+  width: 50%;
 }
