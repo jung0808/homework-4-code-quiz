@@ -11,6 +11,9 @@ let pos = 0,
   chD,
   correct = 0;
 
+//Setting up a timer
+let secondsLeft = 100;
+
 // this is a multidimensional array with 5 inner array elements with 6 elements inside them
 let questions = [
   {
@@ -22,11 +25,11 @@ let questions = [
     answer: "B",
   },
   {
-    question: "How is document type initialized in HTML5.?",
-    a: "</DOCTYPE HTML>",
-    b: "`<`DOCTYPE`>`",
-    c: "`<!`DOCTYPE HTML`>`",
-    d: "`</DOCTYPE html`>`",
+    question: "What time does our class start on Tuesday and Thursday?",
+    a: "3:30 P.M.",
+    b: "1:00 P.M.",
+    c: "6:30 P.M.",
+    d: "6:00 A.M.",
     answer: "C",
   },
   {
@@ -49,16 +52,16 @@ let questions = [
     question: "How do you insert a comment in a CSS file?",
     a: "// this is a comment // ",
     b: "/* this is a comment */  ",
-    c: "' this is a comment",
+    c: "this is a comment",
     d: "// this is a comment",
     answer: "B",
   },
   {
     question: "Where is the correct place to insert a JavaScript?",
-    a: "The <head> section",
-    b: "The <body> section",
-    c: "Both the <head> section and the <body> section are correct  ",
-    d: "At the end of the page after <HTML> tag",
+    a: "The head section",
+    b: "The body section",
+    c: "Both the head section and the body section are correct  ",
+    d: "At the end of the page after HTML tag",
     answer: "C",
   },
   {
@@ -92,8 +95,23 @@ function get(questions) {
   return document.getElementById(questions);
 }
 
+function startTimer() {
+  let timerEl = document.getElementById("time");
+  timerEl.textContent = secondsLeft;
+  //console.log(secondsLeft);
+  secondsLeft = secondsLeft - 1;
+  if (secondsLeft <= 0) {
+    clearInterval(startTimer);
+  } else {
+    setTimeout(startTimer, 1000);
+  }
+}
+
 function renderQuestion() {
+  let startPage = document.getElementById("start-page");
+  startPage.style.display = "none";
   test = get("test");
+  test.style.display = "block";
   if (pos >= questions.length) {
     test.innerHTML =
       "<h2> You got " +
@@ -144,11 +162,20 @@ function checkAnswer() {
       choice = choices[i].value;
     }
   }
-  if (choice == questions[pos].answer) {
+  if (choice === questions[pos].answer) {
+    //console.log(correct);
     correct++;
   }
   pos++;
   renderQuestion();
 }
 
-window.addEventListener("load", renderQuestion);
+function startPage() {
+  renderQuestion();
+  startTimer();
+}
+
+let startButton = document.getElementById("start-button");
+
+startButton.addEventListener("click", startPage);
+// window.addEventListener("load", renderQuestion);
