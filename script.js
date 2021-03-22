@@ -70,7 +70,7 @@ let questions = [
     b: "msg('Hello World');",
     c: "alertBox('Hello World');",
     d: "alert('Hello World');  ",
-    answer: "ABCD",
+    answer: "D",
   },
   {
     question: "How do you create a function in JavaScript?",

@@ -7,8 +7,11 @@
   margin: 0 auto;
 }
 
-#test-status {
+#test-status,
+#time {
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 #start-page {
@@ -24,4 +27,10 @@ body {
 
 #start-button {
   margin-top: 20px;
+}
+
+#time {
+  font-weight: bolder;
+  text-align: center;
+  margin-left: 30%;
 }
